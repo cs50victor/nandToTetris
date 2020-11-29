@@ -1,0 +1,8 @@
+vm files C:\Users\Victor\Desktop\FALL 2020\CS 325 - Computer Organization Hardware\Nand2tetris Software Suite\projects\07
+test with - (1)simple add
+	  - (2)Basic Test
+	  - (3)Static Test
+	  - (4)Stacktest
+	  - (5)
+
+C:\Users\Victor\Desktop\FALL 2020\CS 325 - Computer Organization Hardware\Nand2tetris Software Suite\tools\CPUEmulator.bat
