@@ -21,10 +21,14 @@ char* removeSpacesAndComment(char*);
 char* breakBefore(char[], char);
 char* breakAfter(char[], char);
 char* numberFinder(char []);
-char* lineTypeDissector(char [],char,char [],char,char [], char [], int);
+char* lineTypeDissector(char [],char,char [],char,char [], char []);
 char* pushOrpop(char [], char [], char [], char [], char[]);
-char* alu(char [], char [], int);
+char* alu(char [], char []);
 int stringToInt(char*);
+
+int ltCounter = -1;
+int eqCounter = -1;
+int gtCounter = -1;
 
 int main()
 {
@@ -54,8 +58,8 @@ void convertVmFile(){
     inputFileName[inputLen-3]='\0';
     char outputFileName[inputLen];
     strcpy(outputFileName, inputFileName);
-    strcat(outputFileName, ".txt");
-    printf("Output is in this file -> %s\n", outputFileName);
+    strcat(outputFileName, ".asm");
+
 
     //Open files with fopen, write only
     outputFile = fopen(outputFileName, "w");
@@ -66,6 +70,7 @@ void convertVmFile(){
     }
     //makes sure code doesn't keep running if there no input file
     assert(inputFile != NULL);
+    printf("Output is in this file -> %s\n", outputFileName);
     char buffer[bufferSize];
     char *line = (char*)malloc(sizeof(char) * bufferSize);
     char* firstText = NULL;
@@ -74,7 +79,7 @@ void convertVmFile(){
     char secondType = '-';
     char* number = NULL;
     char* out = NULL;
-    int labelCounter = 0;
+
     //Use fgets to read from the file, null when end of file
     while(fgets(buffer, bufferSize, inputFile) != NULL){
         buffer[strcspn(buffer, "\r\n")] = 0;
@@ -118,18 +123,22 @@ void convertVmFile(){
                 //name of a function
                 secondType='N';
             }
+            else{
+                //secondtype is empty
+                secondType='E';
+            }
 
-            assert(firstType!='-');
+            assert(firstType!='-' && secondType!='-');
 
             out = lineTypeDissector(firstText,firstType,
-                secondText,secondType,number,inputFileName, labelCounter);
+                secondText,secondType,number,inputFileName);
             //send the outputAssembly to the file
             fputs(out,outputFile);
         }
     }
     //done reading inputfile and writing to outputfile
     fclose(inputFile);
-    fputs("(END)\n@END\n0;JMP",outputFile);
+    fputs("(END)\n@END\n0;JMP\n//VICTOR ATASIE",outputFile);
     fclose(outputFile);
     //mallocs
     free(line);
@@ -236,18 +245,18 @@ char* numberFinder(char string[]){
 }
 
 char* lineTypeDissector(char firstText[],char firstType,
-    char secondText[],char secondType,char number[], char inputFileName[], int labelCounter){
+    char secondText[],char secondType,char number[], char inputFileName[]){
 
     char popOrpopAssembly[500];
     char aluAssembly[500];
     char* assembly=NULL;
 
-     //first 2 && secondType=='-'
-    if(firstType=='O'){
+     //first 2 && secondType=='-', 'E' for empty
+    if(firstType=='O' && secondType=='E'){
         //(Arithmetic /Logical commands)
-        assembly=alu(firstText,aluAssembly, labelCounter);
+        assembly=alu(firstText,aluAssembly);
     }
-    else if(firstType=='F' && secondType=='-'){
+    else if(firstType=='F' && secondType=='E'){
         //return (Function command)
         assembly="IMPLEMENTED IN VM2";
     }
@@ -278,6 +287,9 @@ char* lineTypeDissector(char firstText[],char firstType,
 
 char* pushOrpop(char firstText[], char secondText[], char number[],char popOrpopAssembly[], char inputFileName[]){
 
+    char versatile[30];
+    char buffer[15];
+    int staticPointerNumber;
 
     if(firstText[1]=='u'){
         //push memoryType number
@@ -287,59 +299,67 @@ char* pushOrpop(char firstText[], char secondText[], char number[],char popOrpop
                 memcmp(secondText, "that",3) == 0){
 
             char memType[6];
-            if(strcmp(secondText, "local\0")){
+            if(memcmp(secondText, "local",4)==0){
                 strcpy(memType, "LCL");
             }
-            else if (strcmp(secondText, "argument\0")){
+            else if (memcmp(secondText, "argument",4)==0){
                 strcpy(memType, "ARG");
             }
-            else if (strcmp(secondText, "that\0") == 0){
+            else if (memcmp(secondText, "that",4) == 0){
                 strcpy(memType, "THAT");
             }
             else{strcpy(memType, "THIS");}
 
-            strcpy(popOrpopAssembly, "@");strcat(popOrpopAssembly, number);
-            strcat(popOrpopAssembly, "\n");strcat(popOrpopAssembly, "D=A\n");
-            strcat(popOrpopAssembly, "@");strcat(popOrpopAssembly, memType);
+            // Logic -> addr = segmentPointer + number, *SP = *addr, SP++
+            printf("%s %s %s\n",firstText,memType,number);
+            strcpy(popOrpopAssembly, "@");
+            strcat(popOrpopAssembly, number);
+            strcat(popOrpopAssembly, "\nD=A\n@");
+            strcat(popOrpopAssembly, memType);
             strcat(popOrpopAssembly, "\nA=M\nD=D+A\nA=D\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n");
+
         }
         else if(memcmp(secondText, "constant",7) == 0){
+            printf("%s %s %s\n",firstText,secondText,number);
+            // Logic -> put @number where SP is and increment its position (@SP,M=M+1)\n ")
             strcpy(popOrpopAssembly, "@");
-            strcat(popOrpopAssembly, number);strcat(popOrpopAssembly, "\n");
-            strcat(popOrpopAssembly, "D=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n");
+            strcat(popOrpopAssembly, number);
+            strcat(popOrpopAssembly, "\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n");
         }
         else if(memcmp(secondText, "static",5) == 0 ||
                 memcmp(secondText, "temp",3) == 0 ||
                 memcmp(secondText, "pointer",6) == 0){
 
-
-            char fileNamePlusIndex[50];
-            int RAM;
-            char RAMSTRING[20];
-            if(strcmp(secondText, "static\0")){
-                strcpy(fileNamePlusIndex, inputFileName);
-                strcat(fileNamePlusIndex, ".");
-                strcat(fileNamePlusIndex, number);
+            if(memcmp(secondText, "static",5)==0){
+                printf("%s %s %s\n",firstText,secondText,number);
+                //Logic -> addr = inputFileName.number, SP--, *addr = *SP \n
+                strcpy(versatile, inputFileName);
+                strcat(versatile, ".");
+                strcat(versatile, number);
             }
-            else if (strcmp(secondText, "temp\0")){
-                RAM=stringToInt(number) + 5;
-                sprintf(RAMSTRING, "%d", RAM);
-                strcpy(fileNamePlusIndex, "R");
-                strcpy(fileNamePlusIndex, RAMSTRING);
+            else if (memcmp(secondText, "temp",3)==0){
+                printf("%s %s %s\n",firstText,secondText,number);
+                //Logic -> addr = 5 + i, *SP = *addr, SP++
+                staticPointerNumber = stringToInt(number) + 5;
+                sprintf(buffer, "%d", staticPointerNumber);
+                assert(buffer != NULL);
+                strcpy(versatile, "R");
+                strcat(versatile, buffer);
             }
             else{
+                printf("%s %s %s\n",firstText,secondText,number);
                 //pointer
-                RAM= stringToInt(number) + 3;
-                strcpy(fileNamePlusIndex, "R");
-                sprintf(RAMSTRING, "%d", RAM);
-                strcpy(fileNamePlusIndex, RAMSTRING);
-
+                // Logic -> addr = 3 + i, *SP = *addr, SP++
+                staticPointerNumber = stringToInt(number) + 3;
+                sprintf(buffer, "%d", staticPointerNumber);
+                assert(buffer != NULL);
+                strcpy(versatile, "R");
+                strcat(versatile, buffer);
             }
-            assert(fileNamePlusIndex != NULL);
 
             strcpy(popOrpopAssembly, "@");
-            strcat(popOrpopAssembly, fileNamePlusIndex);strcat(popOrpopAssembly, "\n");
-            strcat(popOrpopAssembly, "D=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n");
+            strcat(popOrpopAssembly, versatile);
+            strcat(popOrpopAssembly, "\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n");
         }
 
         else{
@@ -354,16 +374,20 @@ char* pushOrpop(char firstText[], char secondText[], char number[],char popOrpop
                 memcmp(secondText, "that",3) == 0){
 
             char memType[6];
-            if(strcmp(secondText, "local\0")){
+
+            if(memcmp(secondText, "local",4)==0){
                 strcpy(memType, "LCL");
             }
-            else if (strcmp(secondText, "argument\0")){
+            else if (memcmp(secondText, "argument",3)==0){
                 strcpy(memType, "ARG");
             }
-            else if (strcmp(secondText, "that\0") == 0){
+            else if (memcmp(secondText, "that",4) == 0){
                 strcpy(memType, "THAT");
             }
             else{strcpy(memType, "THIS");}
+            printf("%s %s %s\n",firstText,memType,number);
+
+            // Logic ->  SP--,addr =  segmentPointer + number, *addr = *SP
 
             strcpy(popOrpopAssembly, "@");
             strcat(popOrpopAssembly, number);
@@ -381,38 +405,59 @@ char* pushOrpop(char firstText[], char secondText[], char number[],char popOrpop
             strcat(popOrpopAssembly, memType);
             strcat(popOrpopAssembly, "\nM=D\n");
 
+
+            /*
+             * dOESNT switch values of top of stack with @memtype
+            strcpy(popOrpopAssembly, "@SP\nAM=M-1\nD=M\n@");
+            strcat(popOrpopAssembly, number);
+            strcat(popOrpopAssembly, "\nD=A\n@");
+            strcat(popOrpopAssembly, memType);
+            strcat(popOrpopAssembly, "\nA=M\nD=D+A\nA=D\nD=M\n@SP\nA=M\nM=D\n");
+            */
+
         }
         else if(memcmp(secondText, "static",5) == 0 ||
                 memcmp(secondText, "temp",3) == 0 ||
                 memcmp(secondText, "pointer",6) == 0){
 
-            char fileNamePlusIndex[50];
-            int RAM;
-            char RAMSTRING[20];
-            if(strcmp(secondText, "static\0")){
-                strcpy(fileNamePlusIndex, inputFileName);
-                strcat(fileNamePlusIndex, ".");
-                strcat(fileNamePlusIndex, number);
+
+            if(memcmp(secondText, "static",5)==0){
+                printf("%s %s %s\n",firstText,secondText,number);
+
+                //Logic -> addr = inputFileName.number, SP--, *addr = *SP \n
+                strcpy(versatile, inputFileName);
+                strcat(versatile, ".");
+                strcat(versatile, number);
+
             }
-            else if (strcmp(secondText, "temp\0")){
-                RAM=stringToInt(number) + 5;
-                sprintf(RAMSTRING, "%d", RAM);
-                strcpy(fileNamePlusIndex, "R");
-                strcpy(fileNamePlusIndex, RAMSTRING);
+            else if (memcmp(secondText, "temp",3)==0){
+
+                printf("%s %s %s\n",firstText,secondText,number);
+                //Logic -> addr = 5 + i, SP--, *addr = *SP
+                staticPointerNumber = stringToInt(number) + 5;
+                sprintf(buffer, "%d", staticPointerNumber);
+                assert(buffer != NULL);
+                strcpy(versatile, "R");
+                strcat(versatile, buffer);
+                puts(buffer);
             }
             else{
                 //pointer
-                RAM= stringToInt(number) + 3;
-                strcpy(fileNamePlusIndex, "R");
-                sprintf(RAMSTRING, "%d", RAM);
-                strcpy(fileNamePlusIndex, RAMSTRING);
+                printf("%s %s %s\n",firstText,secondText,number);
+
+                // Logic -> addr = 3 + i, SP--, *addr = *SP
+                staticPointerNumber = stringToInt(number) + 3;
+                sprintf(buffer, "%d", staticPointerNumber);
+                assert(buffer != NULL);
+                strcpy(versatile, "R");
+                strcat(versatile, buffer);
+
 
             }
-            assert(fileNamePlusIndex != NULL);
-
+            // Logic ->  SP--, addr = 3 + i, *addr = *SP
             strcpy(popOrpopAssembly, "@SP\nAM=M-1\nD=M\n@");
-            strcat(popOrpopAssembly, fileNamePlusIndex);strcat(popOrpopAssembly, "\n");
-            strcat(popOrpopAssembly, "M=D\n");
+            strcat(popOrpopAssembly, versatile);
+            strcat(popOrpopAssembly, "\nM=D\n");
         }
         else{
             strcpy(popOrpopAssembly, "line 414-> Push memory segment comparison error");
@@ -423,68 +468,100 @@ char* pushOrpop(char firstText[], char secondText[], char number[],char popOrpop
     return popOrpopAssembly;
 }
 // aka arithmetic-logic unit
-char* alu(char command[], char aluAssembly[], int labelCounter){
+
+char* alu(char command[], char aluAssembly[]){
     char versatile[10];
+    char intCounterString[10];
+    char labelStartString[20];
+    char labelEndString[20];
+
     if(memcmp(command, "neg",3) == 0 ||
             memcmp(command, "not",3) == 0){
 
-        if(strcmp(command, "neg\0") == 0){strcpy(versatile, "M=-M");}
-        else{strcpy(versatile, "M=!M");}
+        if(strcmp(command, "neg\0") == 0){puts(command);strcpy(versatile, "M=-M");}
+        else{puts(command);strcpy(versatile, "M=!M");}
 
-        strcpy(aluAssembly, "@SP\nAM=M-1\n");
+        strcpy(aluAssembly, "@SP\nA=M-1\n");
         strcat(aluAssembly, versatile);
-        strcat(aluAssembly, "\n@SP\nM=M+1\n");
+        strcat(aluAssembly, "\n");
     }
     else if(memcmp(command, "add",3) == 0 ||
             memcmp(command, "and",3) == 0 ||
             memcmp(command, "or",2) == 0 ||
             memcmp(command, "sub",3) == 0){
 
-        if(strcmp(command, "add\0") == 0){strcpy(versatile, "M=D+M");}
-        else if(strcmp(command, "and\0") == 0){strcpy(versatile, "M=D&M");}
-        else if(strcmp(command, "or\0") == 0){strcpy(versatile, "M=D|M");}
-        else{strcpy(versatile, "M=M-D");}
+        if(strcmp(command, "add\0") == 0){puts(command);strcpy(versatile, "D=D+M");}
+        else if(strcmp(command, "and\0") == 0){puts(command);strcpy(versatile, "D=D&M");}
+        else if(strcmp(command, "or\0") == 0){puts(command);strcpy(versatile, "D=D|M");}
+        else{puts(command);strcpy(versatile, "D=D-M");}
 
-        strcpy(aluAssembly, "@SP\nAM=M-1\nD=M\n@SP\nAM=M-1\n");
+        strcpy(aluAssembly, "@SP\nA=M-1\nD=M\n@R13\nM=D\n@SP\nM=M-1\n@SP\nA=M-1\nD=M\n@R13\n");
         strcat(aluAssembly, versatile);
-        strcat(aluAssembly, "\n@SP\nM=M+1\n");
+        strcat(aluAssembly, "\n@SP\nA=M-1\nM=D\n");
     }
     else if(memcmp(command, "eq",2) == 0 ||
             memcmp(command, "gt",2) == 0 ||
             memcmp(command, "lt",2) == 0){
 
-        if(strcmp(command, "eq\0") == 0){strcpy(versatile, "D;JEQ");}
-        else if(strcmp(command, "gt\0") == 0){strcpy(versatile, "D;JGT");}
-        else{strcpy(versatile, "D;JLT");}
 
-        char labelCounterString[20];
-        sprintf(labelCounterString, "%d", labelCounter);
+        if(strcmp(command, "eq\0") == 0){
+            puts(command);
+            eqCounter=eqCounter+1;
+            strcpy(versatile, "D;JEQ");
+            sprintf(intCounterString, "%d", eqCounter);
 
-        strcpy(aluAssembly, "@SP\nAM=M-1\nD=M\n@SP\nAM=M-1\nD=M-D\n@");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".TRUE\n");
+            strcpy(labelStartString, "RANDOM");
+            strcat(labelStartString, ".EQ.START.");
+            strcat(labelStartString, intCounterString);
+
+            strcpy(labelEndString, "RANDOM");
+            strcat(labelEndString, ".EQ.END.");
+            strcat(labelEndString, intCounterString);
+
+        }
+        else if(strcmp(command, "gt\0") == 0){
+            puts(command);
+            gtCounter=gtCounter+1;
+            strcpy(versatile, "D;JGT");
+            sprintf(intCounterString, "%d", gtCounter);
+
+            strcpy(labelStartString, "RANDOM");
+            strcat(labelStartString, ".GT.START.");
+            strcat(labelStartString, intCounterString);
+
+            strcpy(labelEndString, "RANDOM");
+            strcat(labelEndString, ".GT.END.");
+            strcat(labelEndString, intCounterString);
+        }
+        else{
+            puts(command);
+            ltCounter=ltCounter+1;
+            strcpy(versatile, "D;JLT");
+            sprintf(intCounterString, "%d", ltCounter);
+
+            strcpy(labelStartString, "RANDOM");
+            strcat(labelStartString, ".LT.START.");
+            strcat(labelStartString, intCounterString);
+
+            strcpy(labelEndString, "RANDOM");
+            strcat(labelEndString, ".LT.END.");
+            strcat(labelEndString, intCounterString);
+        }
+
+        strcpy(aluAssembly, "@SP\nA=M-1\nD=M\n@R13\nM=D\n@SP\nM=M-1\n@SP\nA=M-1\nD=M\n@R13\nD=D-M\n@");
+        strcat(aluAssembly, labelStartString);
+        strcat(aluAssembly, "\n");
         strcat(aluAssembly, versatile);
-        strcat(aluAssembly, "\n@");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".FALSE");
-        strcat(aluAssembly, "\n0;JMP\n(");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".TRUE)");
-        strcat(aluAssembly, "\n@SP\nA=M\nM=-1\n@SP\nM=M+1\n@");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".END\n0;JMP\n(");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".FALSE)");
-        strcat(aluAssembly, "\n@SP\nA=M\nM=0\n@SP\nM=M+1\n(");
-        strcat(aluAssembly, "COMP.");
-        strcat(aluAssembly, labelCounterString);
-        strcat(aluAssembly, ".END)\n");
-        labelCounter++;
+
+        strcat(aluAssembly, "\n@SP\nA=M-1\nM=0\n@");
+        strcat(aluAssembly, labelEndString);
+        strcat(aluAssembly, "\n");
+        strcat(aluAssembly, "0;JMP\n(");
+        strcat(aluAssembly, labelStartString);
+        strcat(aluAssembly, ")");
+        strcat(aluAssembly, "\n@SP\nA=M-1\nM=-1\n(");
+        strcat(aluAssembly, labelEndString);
+        strcat(aluAssembly, ")\n");
     }
 
     assert(aluAssembly != NULL);
@@ -508,7 +585,12 @@ int stringToInt(char* string){
 
 
 
-
+/*
+ *  100% working
+ * alu
+ * pop
+ * push
+*/
 
 
 
