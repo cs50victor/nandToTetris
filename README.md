@@ -57,35 +57,43 @@ M=M+1
 
 ### Example.asm  [ Turns this assembly file ]
 
-<code>
-// Given two numbers stored in the registers R0 and R1,
+>// Given two numbers stored in the registers R0 and R1,
 // compute the maximum between them and store it in the R2 register.
-
-  @R0
-  D=M             
-  @R1
-  D=D-M    
-  @OUTPUT_FIRST
-  D;JGT      
-  @R1
-  D=M        
-  @OUTPUT_D
-  0;JMP   
+<br/>
+@R0
+<br/>
+D=M             
+@R1
+<br/>
+D=D-M  
+@OUTPUT_FIRST
+<br/>
+D;JGT      
+@R1
+<br/>
+D=M       
+@OUTPUT_D
+<br/>
+0;JMP  
 (OUTPUT_FIRST)
-  @R0
-  D=M  
+<br/>
+@R0
+<br/>
+D=M  
 (OUTPUT_D)
-  @R2
-  M=D          
+<br/>
+@R2
+<br/>
+M=D     
 (INFINITE_LOOP)
-  @INFINITE_LOOP
-  0;JMP
-</code>
+<br/>
+@INFINITE_LOOP
+<br/>
+0;JMP
 
 ### Example.hack  [ into this hack machine code ]
 
-<code>
-0000000000000000
+>0000000000000000
 <br/>
 1111110000010000
 <br/>
@@ -116,4 +124,3 @@ M=M+1
 0000000000001110
 <br/>
 1110101010000111
-</code>
