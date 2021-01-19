@@ -1,0 +1,638 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Computer Hardware: Narrowed In </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="94d3b623-e8bb-4d98-9853-8748e3568750" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1506808940319-a472563bebee?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;ixid=eyJhcHBfaWQiOjYzOTIxfQ" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💻</span></div><h1 class="page-title">Computer Hardware: Narrowed In </h1></header><div class="page-body"><ul id="3d0ca066-1fbe-4d19-a4e9-04948115ed10" class="toggle"><li><details open=""><summary><strong>Transistors</strong></summary><ul id="b4c029d6-ce49-4eb9-8584-e8e6e7297fd1" class="bulleted-list"><li>A switch that can be activated or deactivated by electricity.</li></ul><ul id="c70974ce-87dc-4e8f-aa0b-7d9822eec6a6" class="toggle"><li><details open=""><summary>Images of transistors</summary><div id="e52c3d96-9424-4cd0-b76e-58d73c9c558f" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th></tr></thead><tbody><tr id="9d4eaadf-a5f1-4a34-8b7e-0041efa3d492"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e52c3d9694244cd0b76e58d73c9c558f/Page%201%209d4eaadfa5f14a348b7e0041efa3d492.html">Page 1</a></td></tr><tr id="af7a2304-d892-48f5-a21b-1059b1eee8f9"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e52c3d9694244cd0b76e58d73c9c558f/Page%202%20af7a2304d89248f5a21b1059b1eee8f9.html">Page 2</a></td></tr></tbody></table></div></details></li></ul><ul id="9e8dcc28-d2a5-4c3e-bee2-9648a8351cf2" class="bulleted-list"><li>CPU&#x27;s + GPU&#x27;s → made from transistors<ul id="c3544356-8fa0-4ca5-ad3d-4b9ab72f651a" class="bulleted-list"><li>Billions of transistors are packed on a &quot;chip&quot;</li></ul><ul id="055e4441-60c4-4462-82d6-984cfd419136" class="bulleted-list"><li><em><strong>transistors switch on (1)</strong></em> when <em><strong>a proton passes through</strong></em> them</li></ul><ul id="7ac0cde6-e7c2-46e2-b901-8e75658f51a0" class="bulleted-list"><li><strong><em>transistors switch off</em></strong> <em><strong>(0)</strong></em> when <em><strong>an electron passes through</strong></em> them</li></ul></li></ul><ul id="ff4a117f-56ce-41d7-82a8-0f6713280c97" class="bulleted-list"><li>These <strong>transistors make up LOGIC GATES</strong><em><strong> (the basic building block from which all digital electronic circuits and microprocessor based systems are constructed from.)</strong></em></li></ul><ul id="d38b07c9-d6a5-401d-88d9-6b7a616e9ad7" class="toggle"><li><details open=""><summary>Images of a logic gates (<strong><em>the symbols are just a high level of abstraction from the transistors</em></strong>)</summary><div id="468d06e0-54a4-4e3e-b174-652c3b33bdec" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th></tr></thead><tbody><tr id="2899797c-89e9-4b61-b04a-6af42872362d"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%202899797c89e94b61b04a6af42872362d.html">Untitled</a></td></tr><tr id="5f895714-a695-4c6b-bd9c-eebdfada7f2a"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%205f895714a6954c6bbd9ceebdfada7f2a.html">Untitled</a></td></tr><tr id="39966411-6d18-46be-b661-2a9a89543f21"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Transistors%20forming%20logic%20gates%20in%20a%20CPU%20399664116d1846beb6612a9a89543f21.html">Transistors forming logic gates in a CPU</a></td></tr><tr id="a7b39906-d640-47b9-b2f0-94d29e560807"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%20a7b39906d64047b9b2f094d29e560807.html">Untitled</a></td></tr><tr id="8db3163a-8a38-4c12-a813-c93749654ec5"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%208db3163a8a384c12a813c93749654ec5.html">Untitled</a></td></tr><tr id="30456e42-296f-4d07-8122-c870249a00a5"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%2030456e42296f4d078122c870249a00a5.html">Untitled</a></td></tr><tr id="dfce0eea-7abd-4df0-902f-836339c92eac"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20468d06e054a44e3eb174652c3b33bdec/Untitled%20dfce0eea7abd4df0902f836339c92eac.html">Untitled</a></td></tr></tbody></table></div></details></li></ul><ul id="288c839f-968c-4f8c-8b3d-1a94f02bfb40" class="bulleted-list"><li>Basic logic gates build up &amp; combine with some other pieces of electronics like diodes, to make more complex gates and <em><strong>give out a specified Boolean/Binary output. (That&#x27;s why computers speak BINARY)</strong></em></li></ul><ul id="b3ba29c3-95d5-4b00-85be-585d62e14111" class="bulleted-list"><li><em><strong>Logic gates make up Integrated Circuits (IC&#x27;s)</strong></em><ul id="3fb9c2e6-8d07-415b-ba95-3c9b31441c24" class="toggle"><li><details open=""><summary><strong>6 Classifications of IC&#x27;s</strong></summary><ul id="f8f7681b-ad70-4f77-9fd8-f415e3537fce" class="bulleted-list"><li>SSI - <strong>Small Scale</strong> Integration <ul id="dd908f13-b7f7-4b40-83a5-784cd292b841" class="bulleted-list"><li><em><strong>Up to 10 transistors or a few gates within a single package</strong></em> such as AND,OR,NOT gates.</li></ul></li></ul><ul id="ccea74f2-58a6-4599-9694-1285346ba161" class="bulleted-list"><li>MSI - <strong>Medium Scale</strong> Integration<ul id="121b6399-f379-4b88-8217-f3b06c961a78" class="bulleted-list"><li><em><strong>10→100 transistors / 10s of gates in a single package</strong></em></li></ul><ul id="da0867b3-911b-4694-87a6-285025d9e7a1" class="bulleted-list"><li>perform digital operations such as adders, decoders, counters, flip-flops and multiplexers.</li></ul></li></ul><ul id="81ed749a-73c9-4544-927e-463d0f834757" class="bulleted-list"><li>LSI - <strong>Large Scale</strong> Integration<ul id="0fd83849-be12-4add-9985-9342a07e68c2" class="bulleted-list"><li><em><strong>100→1,000 transistors / 100s of gates in a single package</strong></em></li></ul><ul id="b5a5e8a6-30aa-4a2b-8c0a-851d7cb1849a" class="bulleted-list"><li>perform digital operations such as I/O chips, memory, arithmetic and logic units.</li></ul></li></ul><ul id="99cc348f-578f-4185-b8ca-3622f3315d94" class="bulleted-list"><li>VLSI - <strong>Very-Large Scale</strong> Integration<ul id="3ba3ab5d-b244-46d6-8f2a-21793761e471" class="bulleted-list"><li><strong><em>1,000→10,000 transistors / 1000s of gates in a single package</em></strong></li></ul><ul id="61fbbf0f-4170-41a9-9bbb-735fcaabffbe" class="bulleted-list"><li>perform digital operations such as processors, large memory arrays and programmable logic devices.</li></ul></li></ul><ul id="3b22538c-12ba-4e93-9ce4-2007c63b3381" class="bulleted-list"><li>SLSI - <strong>Super-Large Scale</strong> Integration<ul id="5b582e06-d172-4589-b2a2-6d9370ec39e5" class="bulleted-list"><li><em><strong>10,000→100,000 transistors in a single package</strong></em></li></ul><ul id="7ba00ee7-06f0-42c4-bbd0-891f3580a9c1" class="bulleted-list"><li>perform digital operations such as calculators.</li></ul></li></ul><ul id="928400f9-4140-440f-aa7e-fabc21a3957e" class="bulleted-list"><li>ULSI - <strong>Ultra-Large Scale</strong> Integration<ul id="d23ef909-6833-4c6b-813f-6c54052231ec" class="bulleted-list"><li><em><strong>1,000,000+ transistors in a single package</strong></em></li></ul><ul id="716e2ca6-6035-4445-8462-349079252057" class="bulleted-list"><li>perform digital operations used in computers CPUs, GPUs, video processors,</li></ul></li></ul></details></li></ul></li></ul></details></li></ul><ul id="b5b7f7d6-dc99-4c09-b571-a6f193ea3f6c" class="toggle"><li><details open=""><summary><strong>Virtual Machine</strong></summary><ul id="d8c02e48-a80c-4bf8-8a9b-7c1a4ccbf421" class="block-color-orange_background bulleted-list"><li>Virtual Machine code is just intermediary code to assembly code</li></ul><ul id="8d869bd9-3a32-4dae-947f-5e466ba40208" class="bulleted-list"><li>It watches the code as it happens</li></ul><ul id="440fbe70-ca36-4a13-8d02-c2f6a51df411" class="bulleted-list"><li>VM is a simulated computer that runs a simple instruction set (bytecode → machine code)</li></ul><ul id="97e360d6-ecdf-44f0-bd69-a04adef9c89f" class="bulleted-list"><li>some programming language VMs help with complex garbage collection, bounds checking, some form of security, managing of your code, JustInTime compilation, managing pointers, </li></ul><ul id="1d3ad2a1-a3ae-436a-a94f-56e355e29f06" class="bulleted-list"><li>byte codes require virtual machines</li></ul><ul id="706fafeb-2d92-4adf-a36a-02e263348bfd" class="bulleted-list"><li>High level (python/ JavaScript) → low-level (C) → assembly language → machine code</li></ul><ul id="3384f86a-c01c-4c22-935c-9dff587916b4" class="bulleted-list"><li>The RAM basically works like an array. This is important because all operations happen on a stack.</li></ul><ul id="5710c654-00aa-48d6-8c60-26188e8fdfdb" class="bulleted-list"><li>A complier that generates byte codes will translate higher level languages to low level<ul id="d56ba5b5-442b-44cd-b00a-419335a53c5b" class="bulleted-list"><li>the complier removes thinking from the processor (this is why strictly types languages are faster)</li></ul></li></ul><ul id="9d814435-f7d0-42eb-86de-a4b60c2baa0a" class="toggle"><li><details open=""><summary>Image explanation</summary><div id="e7922624-bc70-4002-b0f0-26fce150406e" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th></tr></thead><tbody><tr id="47558d31-f587-4efb-93db-31b6c0a8032b"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e7922624bc704002b0f026fce150406e/Untitled%2047558d31f5874efb93db31b6c0a8032b.html">Untitled</a></td></tr><tr id="e695ae6c-39a6-4e88-a2fc-6ec30a84987a"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e7922624bc704002b0f026fce150406e/Page%202%20e695ae6c39a64e88a2fc6ec30a84987a.html">Page 2</a></td></tr><tr id="3bada885-21de-4f51-9f24-5f8eb6a9e94f"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e7922624bc704002b0f026fce150406e/Page%203%203bada88521de4f519f245f8eb6a9e94f.html">Page 3</a></td></tr><tr id="f9ea9c7a-e3ef-4269-a0be-c4c35ce6785d"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e7922624bc704002b0f026fce150406e/Untitled%20f9ea9c7ae3ef4269a0bec4c35ce6785d.html">Untitled</a></td></tr><tr id="d6a6b70f-e032-45d1-90b0-c7ad4efb9983"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e7922624bc704002b0f026fce150406e/Untitled%20d6a6b70fe03245d190b0c7ad4efb9983.html">Untitled</a></td></tr></tbody></table></div></details></li></ul><ul id="5ac838d1-bd07-4162-81c4-8d2f6cf8e73c" class="toggle"><li><details open=""><summary><strong>Code from a programming language can be translated to what the CPU can actually execute in 2 ways, through an :</strong></summary><ul id="6e62c117-28af-4220-8987-fcec8cc35595" class="bulleted-list"><li>Interpreter - allows bytecode to run to be changed to different machine codes on different devices</li></ul><ul id="ea6702f9-8396-4390-8e3c-fe0e6d7f28b9" class="bulleted-list"><li>Compiler - changes code through some intermediary steps (like optimization + assembly language) to machine code</li></ul></details></li></ul></details></li></ul><ul id="ef48a68b-260e-4ef9-894d-f2036de1dd83" class="toggle"><li><details open=""><summary><strong>Assembly Languages (ASM)</strong></summary><ul id="d9ba2d73-ebb2-4b21-adaa-1ce577b0fa3f" class="bulleted-list"><li>used to make things like drivers</li></ul><ul id="28d7915f-9149-4158-8f7c-bde5b39dfa33" class="bulleted-list"><li>assembly languages are particular to operating systems and different types of CPU/ microprocessor architecture</li></ul><ul id="49c0760b-9c9c-4ad9-879e-5292a41d8fd1" class="bulleted-list"><li>this languages tells the processor instructions it can do<ul id="17a22b45-839d-4875-a449-c24f2751e13a" class="toggle"><li><details open=""><summary>CPU - only, fetches → decodes →  executes</summary><ul id="f7a78a3a-2df5-488c-89f2-76565b9d76b9" class="bulleted-list"><li>CPU outputs an address , it can read and write to a specific locations in the RAM<ul id="bed88b77-0889-479b-88b8-8f08d87f63de" class="block-color-purple_background toggle"><li><details open=""><summary><strong><em>A simple ALU from logic gates</em></strong></summary><ul id="884663e5-943d-48c6-a341-e2955bd70fa1" class="block-color-pink_background toggle"><li><details open=""><summary><strong><em>3 BASIC GATES</em></strong></summary><ul id="f198e2af-d7b9-4ebe-95aa-d9c057e718c4" class="bulleted-list"><li>AND →  X</li></ul><ul id="28076aad-cd58-4647-a015-80501d0f1b16" class="bulleted-list"><li>OR  → +</li></ul><ul id="4b3a1e4f-8f20-4a3d-8170-a3a39cc89266" class="bulleted-list"><li>NOT → opposite</li></ul></details></li></ul><ul id="5f5a5c60-99c9-4cdb-9945-de4c32f29e03" class="block-color-yellow_background toggle"><li><details open=""><summary><strong><em>DERIVED GATES</em></strong></summary><ul id="2f30fea0-c186-49ac-9839-ba750f7e5e77" class="toggle"><li><details open=""><summary>NAND</summary><ul id="4426dcd8-873d-47e3-bc2a-297eacb85227" class="bulleted-list"><li>AND + NOT → opposite of AND</li></ul></details></li></ul><ul id="3c21d251-61b6-429f-ba70-c1bfa46c61a6" class="toggle"><li><details open=""><summary>NOR</summary><ul id="ca2d5c42-8dc7-4302-8f88-7337c699e58a" class="bulleted-list"><li>OR + NOT → opposite of OR</li></ul></details></li></ul><ul id="892deda5-93d3-40b8-96ab-ed4f65e34a30" class="toggle"><li><details open=""><summary>XOR</summary><ul id="b11b6c80-44b7-4c31-814b-28fd04913daf" class="bulleted-list"><li>exclusive OR → the output is 1 once there is a 1 input</li></ul><ul id="f4dabd02-6f1b-4943-8c9a-88eb37d6d37f" class="bulleted-list"><li>when all inputs are the same → 0</li></ul><ul id="0e17a478-4b19-4bd4-a8fa-8149cd9e9837" class="bulleted-list"><li>when inputs are different →1</li></ul></details></li></ul><ul id="e840db40-fe09-4ad5-80b9-57bf30edb632" class="toggle"><li><details open=""><summary>XNOR</summary><ul id="9c217818-a50f-46a9-a80e-b1eb9b937380" class="bulleted-list"><li>NOT + XOR → opposite of XOR&#x27;s output</li></ul></details></li></ul></details></li></ul><ul id="d5662169-63f3-4236-889e-e0d74983f127" class="block-color-orange_background toggle"><li><details open=""><summary><em><strong>LOGIC GATE TABLES, Boolean Algebra AND Explanation</strong></em></summary><ul id="5cfa1374-c45b-4fcb-8a2f-92ec1352a9ea" class="toggle"><li><details open=""><summary>ADDITION</summary><ul id="954daf54-9b96-4966-bb3a-0e556c75f8d6" class="toggle"><li><details open=""><summary>HALF ADDER</summary><ul id="7c6bea68-38b8-4c2f-8072-5234b793a366" class="bulleted-list"><li>XOR (sum of binary logic) + AND (carrying remainders)</li></ul><ul id="16cc3561-751e-4d65-a0ed-af6e5e494b20" class="bulleted-list"><li>2 inputs for addition , 2 outputs → the sum + the carry</li></ul></details></li></ul><ul id="05347d79-28c8-4b6c-9295-243e3ecf5e9e" class="toggle"><li><details open=""><summary>FULL ADDER</summary><ul id="095ccf3c-93bf-4190-b701-77f54af5d2f1" class="bulleted-list"><li>3 inputs → (2 additions + a carry over from previous addition ) = 2 outputs</li></ul><ul id="781e1669-9ee7-4228-8881-8b315d382b26" class="bulleted-list"><li>HALF ADDER + HALF ADDER + OR</li></ul></details></li></ul><ul id="a0cf5129-6def-4b3c-8db0-f14c9848ec8c" class="toggle"><li><details open=""><summary>8-BIT ADDER</summary><ul id="628a39e6-700c-430e-b55f-e64542b6f819" class="bulleted-list"><li>8 BIT BINARY NUMBER → like →   1111 1011</li></ul><ul id="5961d049-2dac-4d4b-9adf-eb7ae4a3d250" class="bulleted-list"><li>The last numbers at the right go through a HALF-ADDER, the rest keep looping through 7 FULL ADDER</li></ul></details></li></ul></details></li></ul><ul id="47f39b29-6c36-412b-8d19-30d74eb3cadb" class="toggle"><li><details open=""><summary>SUBTRACTOR</summary><ul id="bcfccf8f-826f-44c9-96b0-7defe0bff4f7" class="bulleted-list"><li>Negative numbers are represented using 2&#x27;s complements</li></ul><ul id="ba94f832-968c-44f9-9373-80a390b55e6b" class="toggle"><li><details open=""><summary>HALF ADDER</summary><ul id="25d5a19e-e969-4cc2-af9a-76126767b06e" class="bulleted-list"><li>difference of the numbers (XOR) + borrow value (when a-b, but a is lower than b)</li></ul><ul id="f6b13fa4-22ac-4635-8a48-44db408fe213" class="bulleted-list"><li>both numbers are passed to a XOR gate</li></ul><ul id="12419926-34f9-4640-8771-8cbade8d8a0c" class="bulleted-list"><li>both numbers are also passed to a NOT GATE</li></ul><ul id="98bceb64-3d6f-472c-b9af-ae5fe522d4d7" class="bulleted-list"><li>the Borrow value is the NOT value of A and the  value of B passed to an AND gate</li></ul></details></li></ul><ul id="912d8cfc-3b68-401c-94da-696c7a6d4a0e" class="toggle"><li><details open=""><summary>FULL SUBTRACTOR</summary><ul id="69005535-5b35-4e75-b42c-99067b123ffd" class="bulleted-list"><li>3 outputs → (2 subtractions + borrow)→ 2 outputs (difference + borrow)</li></ul><ul id="9d837cb4-a3cb-4386-83ca-9e23a91aeab7" class="bulleted-list"><li>NAND Gates only implementation</li></ul></details></li></ul></details></li></ul><ul id="0db72889-4556-4672-8fba-a0b07a357334" class="toggle"><li><details open=""><summary>MUX (multiplexer)</summary><ul id="4c699435-d483-422b-a9ac-294f77e28341" class="bulleted-list"><li>Binary data selector from one of many input lines and directs it to your output line</li></ul><ul id="8c6649ff-6999-4d56-bcfe-6bdd62b6e46b" class="bulleted-list"><li>Inputs, selectors and 1 output</li></ul><ul id="e08b4aa2-ab34-47aa-8058-e2991c4e3af1" class="bulleted-list"><li>2n inputs → n select lines</li></ul><ul id="d22635c0-f9b8-4bb3-a237-75bbc02e3596" class="bulleted-list"><li>one selector connects to both an AND and its NOT value connects to another AND GATE already connected to the inputs</li></ul><ul id="3adc7c3c-b57c-429b-ab6a-df2b2f90ef7f" class="bulleted-list"><li>the selectors maneuver the current</li></ul><ul id="8fcd0cb1-f06d-4dd7-b7bf-cea79e08908b" class="bulleted-list"><li>one selector connects to all the AND gates </li></ul><ul id="b6c0df7f-dc99-4fc5-a9ec-833651d22c62" class="bulleted-list"><li>the output is always connected to an OR gate</li></ul></details></li></ul><ul id="c72374c3-93fe-4345-9bbe-01bb863e91a9" class="toggle"><li><details open=""><summary>0 Testing Circuit</summary><ul id="96aaea62-cee9-44a5-911a-8bf1c2efef6d" class="bulleted-list"><li>OR GATE for every 2 bits in binary sequence</li></ul><ul id="08ea8236-e721-40a0-ac12-aceaf2b7ea53" class="bulleted-list"><li>FOR every 2 OR GATES, there is 1 or GATE taking the outputs of both of them in</li></ul><ul id="6687bd2a-1e69-46fd-affd-79efea856693" class="bulleted-list"><li>The final OR gate narrowed down would have its output switched with a NOT gate</li></ul></details></li></ul></details></li></ul><p id="a637ddb7-319a-4b8d-bc2f-31f42f354aad" class="">
+</p></details></li></ul></li></ul><ul id="e44d69da-8f5d-487f-8458-afb6231c032b" class="bulleted-list"><li>CPU →outputs program counter ←and gets instructions from RAM<ul id="8a81ec7b-57ce-4356-9864-ebd078d02530" class="toggle"><li><details open=""><summary>Parts of a CPU</summary><ul id="6ee55489-8197-4837-aa32-6a95cb1379cb" class="bulleted-list"><li>Registers (small internal ram) for numeric values</li></ul><ul id="a6f143ac-9777-4d2e-a3a1-f31bfe997f04" class="bulleted-list"><li>ALU (Arithmetics + Logic )</li></ul><ul id="411c0918-7049-4c25-8077-4eff0b29a756" class="bulleted-list"><li>Status Flags ( to guide the control unit)</li></ul><ul id="852b6e7b-20fb-485d-a518-d9daf08e2c5b" class="bulleted-list"><li>Program Counter register</li></ul><ul id="e57fe89b-41cb-4ae1-bbbe-f25d9b32778b" class="bulleted-list"><li>Input or Output wires (get data into and out of the CPU)</li></ul></details></li></ul></li></ul><ul id="f0b1a01a-88f0-45b5-bd18-01951962cbdd" class="toggle"><li><details open=""><summary>Images for further understanding</summary><div id="e78730d9-aa3d-4f8d-a03c-01c26d7bf2ad" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th></tr></thead><tbody><tr id="899e621f-f87d-485d-87e6-41b4718aa2c1"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20899e621ff87d485d87e641b4718aa2c1.html">Untitled</a></td></tr><tr id="8c304c14-15b6-4f70-a485-fb56a049d275"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%208c304c1415b64f70a485fb56a049d275.html">Untitled</a></td></tr><tr id="803874b0-36ac-41dd-98f6-db2939b9caef"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Page%202%20803874b036ac41dd98f6db2939b9caef.html">Page 2</a></td></tr><tr id="a5bd946a-6ab7-4da2-9d2c-9051a2338094"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20a5bd946a6ab74da29d2c9051a2338094.html">Untitled</a></td></tr><tr id="4ae93915-2375-4ff5-a146-0aca0888e8f5"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%204ae9391523754ff5a1460aca0888e8f5.html">Untitled</a></td></tr><tr id="fb3527ed-b816-4a13-9b26-f3398c8add76"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20fb3527edb8164a139b26f3398c8add76.html">Untitled</a></td></tr><tr id="c3779ed3-fe82-4466-89fd-b317a838d51f"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20c3779ed3fe82446689fdb317a838d51f.html">Untitled</a></td></tr><tr id="c86295ce-0594-4936-a5df-7e80f97a08e6"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20c86295ce05944936a5df7e80f97a08e6.html">Untitled</a></td></tr><tr id="344348e5-6bab-4045-9700-a83bb262fdfb"><td class="cell-title"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%20Database%20e78730d9aa3d4f8da03c01c26d7bf2ad/Untitled%20344348e56bab40459700a83bb262fdfb.html">Untitled</a></td></tr></tbody></table></div><p id="a1224feb-a3d0-4cd5-aa22-6e91aba9a0b5" class="">
+</p></details></li></ul><ul id="31cf88a9-27bd-4506-b36d-bb8efa2c4e07" class="bulleted-list"><li>The CPU has wires on all 4 sides that connect to pins on the chip, they connect to <ul id="071fddbe-6b50-4308-9895-cd4b1f4d5bb9" class="bulleted-list"><li>RAM address bus wires (top)</li></ul><ul id="4b2fed51-f221-4f25-9a11-db92fa893a53" class="bulleted-list"><li>set and enable RAM wires (right) → control buses</li></ul><ul id="6936887a-fe03-4794-a7ed-5da8e69b6866" class="bulleted-list"><li>RAM and PCI devices (bottom)</li></ul><ul id="5eaa21b3-0999-418f-b08b-95d01eefdff5" class="bulleted-list"><li>Input and Output (left) - the usb side of the motherboard. Data from here is sent through the <em>data bus</em> to the RAM. Control buses are also connected here.</li></ul></li></ul></details></li></ul><ul id="1632f9a4-58fb-4dbd-9888-9f20d9c6f077" class="block-color-brown_background toggle"><li><details open=""><summary><em><strong>Memory creation using logic gates combinations that form a &quot;LATCH&quot; / flip flops</strong></em></summary><ul id="b1c4ffdc-ac25-43bf-8774-ebd0df871f70" class="bulleted-list"><li>A Latch  holds on to a particular value and stays that way. (i.e. gated latch)</li></ul><ul id="0393773a-9f84-4bee-988a-781954b89b14" class="bulleted-list"><li>a latch holds one bit (a binary value)<ul id="ff645a40-8c02-4713-acae-1c8fdba91273" class="bulleted-list"><li>latches are put side by side to store more bits</li></ul><ul id="ae7ffc0d-b013-4057-89fb-3817de3322d8" class="bulleted-list"><li>registers are a group of latches arranged in a grid (like 16 x 16) that hold a single binary number of different widths(or max capacity) like 32-bit or 64-bit <ul id="7671821c-aa86-4f97-bc86-5c1779c7fa9e" class="bulleted-list"><li>address of a latch/ memory address can be gotten using the column and row address in binary</li></ul><ul id="0631ebca-0105-4001-bb54-dab853e59146" class="bulleted-list"><li>2 multiplexors use these column and row addresses</li></ul></li></ul><ul id="e9221584-3d8f-4bbc-8588-c54111e2c877" class="bulleted-list"><li> RAM sticks pack modules of these bit storage arrangements in massive nested matrices of memory cells<ul id="70dee691-a8f1-4cd2-a5a6-0ae9601df56b" class="bulleted-list"><li>Different types of RAMs use different circuits to store individual bits<ul id="fdf6a42d-758d-4c8d-aadd-e7e96a7ded2a" class="bulleted-list"><li>like using different logic gates, charge traps, capacitors etc</li></ul></li></ul></li></ul></li></ul><ul id="d8d26abd-f81f-4e11-a91a-fa8f9c9318a7" class="bulleted-list"><li>Inputting bit data into this logic combination (transistor circuit config.) is called writing</li></ul><ul id="59b4ff8e-bec3-4de8-9b39-ff97163ac481" class="bulleted-list"><li>Getting data out is called reading</li></ul></details></li></ul></li></ul><ul id="fa51fe31-1bd6-482d-8233-ff5ca5c55b11" class="bulleted-list"><li>Instruction Address    Function  (Argument, Argument)</li></ul><ul id="b8a06326-04ae-46fd-bf77-72c2a3336450" class="toggle"><li><details open=""><summary>Instruction Address    OPCODE   OPRAND,   OPRAND</summary><ul id="e9e2bfe2-515a-42a0-9b3b-2ec1751221a1" class="bulleted-list"><li>OPCODE → instruction, stored as bits in the RAM or instruction registers</li></ul><ul id="00e714ca-494d-430e-9174-031c423e7a90" class="bulleted-list"><li>OPRAND can be <ul id="3345c875-5d57-42f7-8bc7-1f1c082e73ed" class="bulleted-list"><li><em><strong>Registers</strong></em><strong> (ER0, ER1, ER2, ER3, ER4, ER5, ER6, ER7)</strong> , </li></ul><ul id="dc2d0591-e96a-4106-9f16-57899e66c75c" class="bulleted-list"><li><em><strong>Memory Locations</strong></em>, </li></ul><ul id="e014be96-781d-4e08-bc37-224dcdd8fed7" class="bulleted-list"><li><em><strong>Constants</strong></em><strong> (numeric values)</strong></li></ul></li></ul><ul id="256e9d4d-8c6e-4bd8-88c1-56360fe8426f" class="bulleted-list"><li>Tip: OPCODES tables from companies show every instruction your CPU can understand.</li></ul><ul id="846c42f7-3b7a-41c2-a1b0-73ef6b65be0f" class="bulleted-list"><li>Square brackets are used to give the value of an memory address &quot; [ ] &quot;</li></ul></details></li></ul><ul id="d8fdd205-bbf3-4318-b09d-7e21d2fe06c6" class="bulleted-list"><li>The <strong>ALU</strong> takes <strong><em>two values</em></strong>, <em><strong>an instruction</strong></em> and gives out the <strong><em>result</em></strong> and a <strong><em>status</em></strong><ul id="4e44e657-dda5-4da3-8d11-88e8b77e1d1f" class="bulleted-list"><li>Value 1+ Value 2 + Instruction → Result + Status</li></ul></li></ul></details></li></ul><p id="8386bebb-9d14-4518-b321-4cd3f2bac41d" class="">
+</p><hr id="7c28d8bf-7703-4d4e-baf1-a2ba6daa5744"/><h2 id="22c46431-e30e-47d2-a4e5-1faa77ad823b" class="">School Work</h2><ul id="661de7f1-dc53-4079-a465-4f4e6e1ac0dd" class="toggle"><li><details open=""><summary>C → x86 Assembly Language</summary><ul id="37cbe41c-df2f-4b53-a216-f57e97bd659a" class="toggle"><li><details open=""><summary>Every C program has 4 main components dependent on either the 32 bit or 64 bit architecture - this is the max capacity of the CPU registers</summary><ul id="157d4c16-a7b1-4f0d-9fa4-69f5ab4e8435" class="bulleted-list"><li><em><strong>Heap</strong></em><ul id="a1bfadbd-9561-47ce-a753-f1704e73adcb" class="bulleted-list"><li>An area in memory designed for manual memory allocation i.e when your use &quot;malloc&quot;, &quot;calloc&quot;, or declare global or static variables are declared</li></ul></li></ul><ul id="39ee3ff2-c23f-4688-bd58-7f3812fb8481" class="bulleted-list"><li><em><strong>Stack (data structure)</strong></em><ul id="6602750b-e593-45e3-bdde-5dc5e2e1ea77" class="bulleted-list"><li><strong><em>Pop</em></strong> - remove top address</li></ul><ul id="b7de209d-0cab-4dc7-bb17-75abb9cb25ac" class="bulleted-list"><li><strong><em>Push</em></strong> - add to the top of the addresses</li></ul><ul id="4f2e448a-093b-48e6-ac91-3a3013d946bc" class="bulleted-list"><li><em>Address number</em> decreases up the stack<ul id="b08b0e4a-1ffa-4e33-9f97-bec3806bb34a" class="bulleted-list"><li><em><strong>Stack frames</strong></em> are set up with functions, this is where all the local variables in that function are stored → the space between  ebp and the esp<ul id="b31c5be6-c45f-4cdf-81e7-a1f564e5a16b" class="bulleted-list"><li>ebp register (base pointer)→ address of the base position of the stack frame</li></ul><ul id="b8112d19-3e14-4f41-9596-d1ab1a0e2477" class="bulleted-list"><li>esp register (stack pointer) → address of the top element of the stack frame</li></ul></li></ul></li></ul></li></ul><ul id="bd47af33-b7e8-4d74-a810-38c6b0b8b740" class="bulleted-list"><li><em><strong>Registers</strong></em><ul id="a7bbbe18-6633-4dfb-9adb-feacd8281427" class="bulleted-list"><li>small storage areas in processor that stores memory address , values or anything that can be represented with 8 bytes or less</li></ul><ul id="d94fe666-bdaa-4050-863f-d51f05dc91dd" class="bulleted-list"><li>6 General Registers - <em><strong>eax, ebx, ecx, edx, esi, edi</strong></em>   (used on as needed bases)</li></ul><ul id="db0a5edd-1731-4fd2-9a3f-c9ea131a06ee" class="bulleted-list"><li>Reserved Registers - ebp, esp, eip (used for specific purposes)</li></ul></li></ul><ul id="39234860-c663-46be-991e-a010f59fe12e" class="bulleted-list"><li><em><strong>Instructions</strong></em></li></ul><p id="6615cd49-b3c2-4303-9b61-bacda5e95e4d" class="">
+</p></details></li></ul><p id="c7c66c81-970b-4df6-bbd2-622ea7a8882a" class="">
+</p></details></li></ul><ul id="a7d7e724-10cf-4c5b-b285-07f6246e29dc" class="toggle"><li><details open=""><summary>NAND2Tetris</summary><ul id="d8079d4f-ce7b-47f7-adff-f2a872b68496" class="toggle"><li><details open=""><summary>Software Hierarchy Platform</summary><ul id="66760533-66b3-4e74-8f6c-54ae397146d1" class="toggle"><li><details open=""><summary>NAND2Tetris Suite folder</summary><ul id="06dccd9c-ac1a-4c61-83ee-0e0ef0be9771" class="bulleted-list"><li>Tools → VM Emulator, Jack Compiler, OS</li></ul><ul id="1408de07-12a7-47b2-a8bc-86f16db32ffa" class="bulleted-list"><li>Projects → 07, 08, 09, 10, 11, 12 , 13</li></ul></details></li></ul><ul id="2159a3dd-fb55-466d-88da-cda2f0c3922a" class="bulleted-list"><li>Program → compiler → VM translator → Assembler → (into hardware platform)</li></ul></details></li></ul><ul id="b97bce86-9bcb-47cc-9fbc-5f18aada471f" class="toggle"><li><details open=""><summary>Hardware Platform (16 bit architecture)</summary><ul id="bf8e8fd0-79db-4c6b-bdb8-88c249d6368b" class="toggle"><li><details open=""><summary>NAND2Tetris Suite folder</summary><ul id="ae0cfa14-628d-4584-ac03-e8cf42eb3815" class="bulleted-list"><li>Tools → Hardware simulator, CPU emulator, Assembler</li></ul><ul id="014f2127-b34e-44eb-b398-1337e619e1ee" class="bulleted-list"><li>Projects → 00, 01, 02, 03, 04, 05, 06</li></ul></details></li></ul><ul id="4e53d511-c476-40c0-8cf5-883ec725e3c0" class="bulleted-list"><li>→ from assembler → Computer Architecture → CPU, RAM, chipset → logic gates</li></ul><ul id="09588722-2495-4b5a-901d-c0b2ca6bd556" class="bulleted-list"><li>NAND ——→ HACK computer (ROM ←→CPU ← → RAM)</li></ul><ul id="2f48ccf7-6def-4ae6-80f6-2f6a1914d7c8" class="bulleted-list"><li>Buses → bunch or group of bits , sign is [ ] </li></ul><ul id="f97daf81-74b5-4625-89a3-840f9fd8a488" class="toggle"><li><details open=""><summary>WEEK 1 (Elementary and Composite Logic Gates)</summary><ul id="36cf1919-21a2-494a-b16b-acc22ad714ef" class="bulleted-list"><li>Nand , <em><strong>Not, And, Or, Xor, Mux, Dmux</strong></em>, Not[16], And[16], Or[16], Mux[16], Or8Way, Mux4Way[16], Mux8Way[16], DMux4Way, DMux8Way </li></ul><ul id="579cea49-4e59-4f58-b885-90f289b5ddd2" class="bulleted-list"><li>Mux and DMux can be used in communications where some inputs can be transported as 1 or 0 and changed back to the input bits using a DMux</li></ul></details></li></ul><ul id="ecc652d1-2b85-494c-9fcd-2aa0912fcbad" class="toggle"><li><details open=""><summary>WEEK 2 (ALU)</summary><ul id="9f513cf4-a2e2-432a-b53b-9d41fc6edea5" class="bulleted-list"><li>HalfAdder, FullAdder, Add16, Inc16, ALU</li></ul><ul id="83840214-7e78-414c-83d5-f3cc11bce753" class="bulleted-list"><li>FullAdder</li></ul><ul id="17a01cbd-111c-478b-bdad-3450cf496e9e" class="toggle"><li><details open=""><summary>HACK ALU</summary><ul id="aa886468-4e15-4a22-bcc2-78f56756fe5d" class="bulleted-list"><li>2 16bit inputs</li></ul><ul id="26a615d4-b35f-4f5a-89d5-7eb7f8ba5aee" class="block-color-brown_background toggle"><li><details open=""><summary>uses 6 control bits to compute 1 out of 18 functions of interest (OPCODE)</summary><ul id="ca3e99c8-ead3-47eb-b80c-b995a317075b" class="bulleted-list"><li>6 bit codes → zx, nx, zy, ny, f, no → they are processed in order</li></ul><ul id="97ad618b-d4b4-4817-98bd-0c8c203af9e7" class="bulleted-list"><li>zx → if ==1 , set x = 0</li></ul><ul id="dc01bd14-51d1-4a8e-8efb-42d1bb7747a3" class="bulleted-list"><li>nx → if ==1 , set x = !x</li></ul><ul id="7fdf4275-5a0c-4343-ac49-7810c866f24d" class="bulleted-list"><li>zy → if ==1 , set y = 0</li></ul><ul id="8e723572-2656-49c3-a2ce-7a4d067e0873" class="bulleted-list"><li>ny → if ==1 , set y = !y</li></ul><ul id="867a6017-2c2d-41f7-9013-1228654fdd19" class="bulleted-list"><li>f → if ==1 , then x+y, else x&amp;y</li></ul><ul id="3b31c4ca-6ef3-4f12-a99c-16db8bbf1bd1" class="bulleted-list"><li>no → if ==1 , set out =!out</li></ul></details></li></ul><ul id="4a09fffe-4be4-4fa7-b880-39e11a9cc272" class="bulleted-list"><li>one 16 bit output</li></ul><ul id="d9a37ef7-313d-47f2-aeaa-bcf005a288f7" class="bulleted-list"><li>two 1 bit control outputs (zr, ng)→ flags<ul id="baea9f8a-5b19-4af4-a30e-66b6db95c8e7" class="bulleted-list"><li>if out == 0 , then zr = 1, else  zr = 0</li></ul><ul id="d281a5d4-55f3-40e7-b4a8-40959c91bef9" class="bulleted-list"><li>if out &lt; 0 then ng =1, else ng = 0</li></ul></li></ul></details></li></ul></details></li></ul><ul id="4bb7a7c3-422a-4c73-a9fe-82679e681fe0" class="toggle"><li><details open=""><summary>WEEK 3 (Registers and Memory)</summary><ul id="3e37042e-944c-41f5-a3bc-5d6bc894b4f7" class="bulleted-list"><li>Bit, Register, RAM8, RAM 64, RAM512, RAM4k, RAM 16k, PC</li></ul><p id="2f6e35a1-a308-4409-a2ea-c460d07d92a7" class="">
+</p><ul id="88ae3989-75f6-4274-8abf-26fb81dabc4b" class="bulleted-list"><li>Bit storage → DFF + MUX (sequential chip, based on a clock behavior)</li></ul><ul id="eac2e314-0f1c-48c7-80ed-ddc531e4c41d" class="bulleted-list"><li>Register - multi bus input and output + loader (combo of bits)</li></ul><ul id="cc3fcf08-c0a5-4852-8737-3cc8aa49c800" class="bulleted-list"><li>RAM - input + address of a register currently being read or written to (width of address input→ log based 2 of number of registers in memory)  + load + output<ul id="76077b55-0556-44fa-b657-5deb44978c7c" class="bulleted-list"><li>to read register → use address and probe state of the register</li></ul><ul id="d553a182-5ae1-469c-b039-d266c216db6e" class="bulleted-list"><li>to write → set address, set input, set load to 1</li></ul></li></ul><ul id="65678a4a-2325-408d-b5e0-f6a3369ba908" class="bulleted-list"><li>Counters / PC→ for order of instructions<ul id="735d02bb-1722-4417-858f-bac64f2a8ce9" class="bulleted-list"><li>settings needed pc = 0 , pc++,  pc =n </li></ul><ul id="97676471-9884-4f8c-b5f2-611c6843f4b8" class="bulleted-list"><li>16 bit input, load, inc, reset, 16 bit output<ul id="a6d8324f-495a-46ec-a51d-c10702002f86" class="bulleted-list"><li>increments in every clock cycle when load=0, reset=0 and inc =1</li></ul></li></ul></li></ul></details></li></ul><ul id="611928e1-842e-49ed-ae4c-11bd6476da1d" class="toggle"><li><details open=""><summary>WEEK 4 (Low level Programs)</summary><p id="4572c6a3-02ae-4085-8404-b280c78d1c93" class="">
+</p></details></li></ul><ul id="f0405cd6-11c7-45b6-92f9-5d2671f0681e" class="toggle"><li><details open=""><summary>WEEK 5 (Computer Architecture)</summary><ul id="16cf405a-775f-4da0-9129-da21338998c2" class="toggle"><li><details open=""><summary>Memory</summary><ul id="675f6422-fc27-4beb-8887-27e81839536a" class="bulleted-list"><li>DMux  (takes a load and adress, outputs load to screen and ram)+</li></ul><ul id="6441d072-160e-4239-a52b-8206596e1a89" class="bulleted-list"><li>RAM 16k <em><strong>[memory location 0-16383]</strong></em> +</li></ul><ul id="1febb1ca-7ef6-41af-b64c-c26e80dd0a88" class="bulleted-list"><li>Screen (takes input and output ) <em><strong>[memory location 16384-24575]</strong></em>+ </li></ul><ul id="ed5c96bc-3016-4f96-8ed6-dd8498d8444b" class="bulleted-list"><li>Keyboard (only gives out output)  <em><strong>[memory location 24575 -24576]</strong></em>+ </li></ul><ul id="748134d9-791f-4e00-92f1-efc07b1db735" class="bulleted-list"><li>Mux4Way16  (selects between the ram, screen and keyboard and gives an output)</li></ul><ul id="bff53614-e80e-4e96-95ba-d3492378b297" class="bulleted-list"><li>Modern computers use a graphics card for peripherals like the screen and keyboard</li></ul></details></li></ul><ul id="8a578207-61d1-4eda-8908-5e9b878422ef" class="toggle"><li><details open=""><summary>ROM</summary><ul id="2b115e06-0d56-43c8-8a7b-bf2e499be0f1" class="bulleted-list"><li>Uses diodes</li></ul><ul id="3ac2c33a-7f70-45eb-b70a-08779cb99a76" class="bulleted-list"><li>located on the motherboard</li></ul><ul id="02cf7489-3ae1-4a9f-9728-d0b0b7820f09" class="bulleted-list"><li>BIOS → handles booting up, then CPU takes over</li></ul></details></li></ul><ul id="d3c221e0-4c50-4699-8650-fd56d5efc6a1" class="toggle"><li><details open=""><summary>CPU</summary><ul id="c9d0dcd4-b9f0-4163-81d0-f749d0d71cf6" class="bulleted-list"><li>connected to the instruction memory and data memory<ul id="d07352b8-67b9-4af3-bc57-6b82c80942e6" class="toggle"><li><details open=""><summary>inputs</summary><ul id="458e4a48-0c96-4129-a97e-a07f9162f25c" class="bulleted-list"><li>one selected 16 bit data memory register  [value to work on]</li></ul><ul id="99806c75-48ed-4e65-a940-64b6894c9272" class="bulleted-list"><li>one selected 16 bit instruction memory register  from instruction (decodes 16 bit to opcode + 15 bit)<ul id="77de55e9-35da-4898-9171-0c7de92946d0" class="bulleted-list"><li>C instruction (1 starting value) or <em><strong>A instruction (0 starting value)</strong></em><ul id="30c33d09-b625-418e-ab2f-708f863138f2" class="bulleted-list"><li>A instruction → 15 bit (15 bit representation of a number) value goes from Mux16 to A register</li></ul><ul id="45e8ad98-a250-463a-8dc5-c859fbd824a1" class="bulleted-list"><li>C instruction → ALU control bits, destination bits, jump bits<ul id="236062da-2b7a-456b-b648-d72ac11b8571" class="bulleted-list"><li>destination [what registers on the cpu to store the comp value] = comp [computes the value of comp] ; jump [what next instruction to go on to ]</li></ul></li></ul></li></ul></li></ul><ul id="392fec04-8215-4cf8-94b1-b9b77ff54595" class="bulleted-list"><li>1 bit input for RESET (power button, boot up bios)</li></ul></details></li></ul><ul id="13bd57bd-5317-4ae5-b9fc-f4ee3782282a" class="toggle"><li><details open=""><summary>outputs</summary><ul id="1636a708-c18a-4717-916b-a10f7f0169d2" class="bulleted-list"><li>16 bit output</li></ul><ul id="c9a4e1ac-7d16-4453-b533-6a56f5a33752" class="bulleted-list"><li>whether to write or not - 1 bit</li></ul><ul id="6a812198-3e6f-487c-8aef-ebfdd0443ebf" class="bulleted-list"><li>data memory for writing</li></ul><ul id="1b9a6830-39f8-4017-ab30-e34a2af1c3d6" class="bulleted-list"><li>pc → address of the next instruction to be executed</li></ul></details></li></ul><ul id="7d4792c2-8557-4573-9e13-a2547cf6df20" class="toggle"><li><details open=""><summary>Mux16 + Mux 16 + A register + D register + PC register + ALU + C bits</summary><ul id="87018bc2-1712-4cbe-8ab6-64bce30d1b97" class="bulleted-list"><li>reset goes to the pc, data memory goes to mux16 then ALU</li></ul><ul id="7b9e285d-ecb8-4f74-a8aa-2b2d8a26522e" class="bulleted-list"><li> instructions go through mux16 to a register to mux16 to ALU</li></ul><ul id="c7cc28a1-6d40-462b-8333-a291fcfba4e7" class="bulleted-list"><li>ALU output goes to mux 16→ a register, d register and outside the chip (destination bits)</li></ul><ul id="6d48aa40-c41b-4ad9-8a50-971abe3cf26e" class="bulleted-list"><li>if rest == 1, PC = 0</li></ul><ul id="4478565d-69de-4148-8c4f-b681d181a83d" class="bulleted-list"><li>pc control jumps and condition </li></ul><ul id="66f7bc8b-f297-4457-a9f8-bd535cfbb72b" class="bulleted-list"><li>if  load == 1 , Pc = a register</li></ul><ul id="6fc8bdea-46ee-4510-a9c8-1a466b18b072" class="bulleted-list"><li>else pc++</li></ul></details></li></ul></li></ul></details></li></ul><ul id="48b3f7d3-6906-46fc-bcdc-2ce1fa474dfd" class="toggle"><li><details open=""><summary>Computer</summary><ul id="deb5438b-d50d-49b1-99c4-abd142ed8378" class="bulleted-list"><li>CPU + ROM (has address and instructions) +RAM </li></ul><ul id="6ae95670-f56b-4101-ab1d-b1519c7935b3" class="bulleted-list"><li>when reset is 1, the execution or the program restarts</li></ul><ul id="c0494d8f-9c68-42ee-bfad-8b8f06556eb3" class="bulleted-list"><li>to start the program stored in the ROM , reset has to be 0</li></ul></details></li></ul><p id="7e54d48b-0840-47b3-a3c7-b2de0aeb54bc" class="">
+</p><figure id="227db0a8-363b-41f8-b730-e82ae5414918" class="image"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled.png"><img style="width:240px" src="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled.png"/></a></figure><p id="ea5e5293-1c57-417a-aab5-d1440eeb44f4" class="">
+</p><figure id="976bda90-74f5-4f0b-b978-35d7afdafe4a" class="image"><a href="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%201.png"><img style="width:240px" src="Computer%20Hardware%20Narrowed%20In%2094d3b623e8bb4d9898538748e3568750/Untitled%201.png"/></a></figure></details></li></ul><ul id="518a7377-2649-4ac4-9301-9635eb3f7bc5" class="toggle"><li><details open=""><summary>WEEK 6 (<strong>Assembler</strong> → assembly language to binary converter in C)</summary><ul id="c0c0d346-8fcf-43b5-8bd7-6e3af90cea98" class="toggle"><li><details open=""><summary>C instructions to binary</summary><ul id="0b7abe07-7847-4a8a-8aa5-3375e7a05ec1" class="bulleted-list"><li>dest = comp; jump (comp or jump)</li></ul><ul id="83431443-0957-47a3-846d-63376aba942a" class="bulleted-list"><li>first 3 bits → [15..13] → 1 1 1 </li></ul><ul id="92f7d942-8ab9-41e8-b40f-239a3a9115e4" class="toggle"><li><details open=""><summary>Destination</summary><ul id="3a1787f4-6084-4fd3-a2db-0ca34b5c98fd" class="block-color-orange_background bulleted-list"><li>equal sign → no jump aka 0 0 0</li></ul><ul id="d03a4f9a-2a29-4054-909c-2610b3e057b3" class="block-color-orange_background bulleted-list"><li>the part after the = is the comp</li></ul><ul id="192af45c-c862-41d0-a23e-1bee1c7324b6" class="block-color-orange_background bulleted-list"><li>a is dependent on comp</li></ul><ul id="f9bbd527-0c9f-4e2c-8771-265dc486d117" class="block-color-orange_background bulleted-list"><li>the part before the = is the dest </li></ul><ul id="563353d8-f601-4251-ba0e-535d26071b1e" class="toggle"><li><details open=""><summary>D=0</summary><ul id="842721e4-37d6-489a-98b9-5fd9ce4d72f7" class="bulleted-list"><li>3 jump bits → [2-0]= 0</li></ul><ul id="716f9371-6f97-4811-864a-33d9d13a8352" class="bulleted-list"><li>destination means d2 → 1</li></ul><ul id="0ffb0566-4097-4091-9784-349510772b3f" class="bulleted-list"><li>dest = d , (using the table) → [d1,d2,d3] = [0,1,0] = [5-3]</li></ul><ul id="7b23c52a-a38a-40de-a14a-2d79f148febd" class="bulleted-list"><li>comp = 0 , using the table → [c1,c2,c3,c4,c5,c6]=[1,0,1,0,1,0]=[11-6]</li></ul><ul id="f8f1e842-f195-4ef7-a62d-d7d144aa2a56" class="bulleted-list"><li>a bit or [12], value here doesn&#x27;t matter if comp doesn&#x27;t have  A or M in it, default 0</li></ul><ul id="d9e80d00-6ee1-4160-80e3-9cb6e963a382" class="bulleted-list"><li>final binary → 1110101010010000</li></ul></details></li></ul><ul id="f583e328-2660-40b6-a862-1fc422f8edc9" class="toggle"><li><details open=""><summary>AMD=D&amp;A</summary></details></li></ul></details></li></ul><ul id="c1a0403b-f166-4320-b22d-67dd27198d12" class="toggle"><li><details open=""><summary>Jump</summary><ul id="8704094b-3cfb-4510-90cd-4ea1a7928252" class="block-color-brown_background bulleted-list"><li>destination → 0 0 0</li></ul><ul id="21f4baa6-d532-44cf-95ff-5ba4dc2be1bc" class="block-color-brown_background bulleted-list"><li>the part after the ; is the jump</li></ul><ul id="e2e74027-c2f0-439f-8f0d-5600f3d00a98" class="block-color-brown_background bulleted-list"><li>the part before the ; is the comp </li></ul><ul id="23ed610d-4a43-48db-9795-4e2a49581a14" class="block-color-brown_background bulleted-list"><li>a is dependent on comp</li></ul><ul id="97e8c153-ca98-4c8f-96d7-a5098ec57731" class="toggle"><li><details open=""><summary>A-1;JGT</summary></details></li></ul><ul id="6dc6d02f-193b-477e-8ed8-4ce9739fd3fa" class="toggle"><li><details open=""><summary>0;JMP</summary></details></li></ul></details></li></ul></details></li></ul><ul id="decf8f23-b9bf-4b36-b8ad-fdfdd6ce826b" class="toggle"><li><details open=""><summary>A instructions to binary</summary><ul id="29b01176-fc27-4264-9bf2-cc4d8c34e21c" class="bulleted-list"><li>just gets the number or symbol after &quot;@&quot; and changes it binary or does something with it     </li></ul><p id="0b16465a-6eb7-4c06-a81b-59ad2a082da1" class="">
+</p><ul id="86f55c83-2f4f-48fc-b2cf-f2e8d3b49e18" class="bulleted-list"><li>@value<ul id="33b06211-09fa-4344-aff2-953520900056" class="bulleted-list"><li>value is either a <em><strong>+ve number</strong></em>  or a symbol referring to such a constant</li></ul><ul id="7aa4c97f-47b1-45d1-90cd-19fed455a645" class="bulleted-list"><li>sets the A register to value</li></ul><ul id="96a5297d-2a12-4916-ac66-f763b34e84d3" class="bulleted-list"><li>RAM[value] aka M Register becomes the selected RAM register → m=-1 changes the selected RAM to -1 </li></ul><ul id="353777b5-0496-43db-b5c7-65683c92043a" class="bulleted-list"><li>you need to write this @ instruction in order to work on the memory aka RAM</li></ul></li></ul></details></li></ul><ul id="6a5aa5e9-e7d4-4259-b410-4d07297e275b" class="toggle"><li><details open=""><summary>C-instruction specification table image</summary></details></li></ul><ul id="1ed4b4cc-c48c-4c3d-b3a4-29b1ee0fa8ba" class="toggle"><li><details open=""><summary>Symbols in assembly (2 pass assembler)</summary><ul id="013e83c2-97fd-4591-8197-4664c82c9963" class="block-color-teal_background toggle"><li><details open=""><summary>3 main types</summary><ul id="37cd021e-cc4c-41cc-9e30-5d42b8049d8b" class="bulleted-list"><li>predefined symbols</li></ul><ul id="ffb34ceb-1ab3-4820-b085-723a3baeeb8b" class="bulleted-list"><li>labels</li></ul><ul id="349536fd-89ee-4989-a610-c69f83aaf39f" class="bulleted-list"><li>variables</li></ul></details></li></ul><ul id="ceb03f49-1fea-45a7-a49e-b9edcf0a0eb5" class="block-color-gray_background toggle"><li><details open=""><summary>LABELS - uppercase always (Branching)</summary><ul id="dc27e0cb-b9fd-4e57-bcef-2231c7d6b00d" class="bulleted-list"><li>declaring a label → (LABELNAME), this is the memory location associated with the label - label declaration generates no assembly code</li></ul><ul id="3982e643-88cb-49d3-aa59-12cbefdfeabf" class="bulleted-list"><li>the memory location after a label declaration is used when @labelname is called in the code</li></ul><ul id="c3d7ac40-97f3-43b4-aa19-06e99ff4631c" class="toggle"><li><details open=""><summary>Branching (goto) → like if else, while etc</summary></details></li></ul></details></li></ul><ul id="a1f87576-9f2e-4642-8bd1-f48051c21157" class="block-color-gray_background toggle"><li><details open=""><summary>variables - lowercase always (variables)</summary><ul id="59a13c2f-6a55-4077-a278-c9e87a31ae55" class="bulleted-list"><li>one variable type</li></ul><ul id="dc0799cc-586e-4c6c-9d46-f5538275c47f" class="bulleted-list"><li>variable like temp → declared with @temp<ul id="7f57d259-5608-4222-bd17-16bd19872bd3" class="bulleted-list"><li>varibles are llocated to the RAM from address 16 onward, 16,17 etc</li></ul></li></ul><ul id="25d36757-ee4f-4d19-80f2-d584ca3a3b2c" class="block-color-gray_background toggle"><li><details open=""><summary>pointers</summary><ul id="e0807f7c-9993-49ad-91be-9fd1effd04cd" class="bulleted-list"><li>like a looping in an array / creating or populating an array</li></ul><ul id="bf03c456-369f-4f26-899f-a68c45f7a949" class="bulleted-list"><li>pointers are variables that store memory addresses like arr and i</li></ul><ul id="0ef4b6e6-cc61-4224-867a-cec26c77ccdf" class="bulleted-list"><li>whenever we have to access memory using a pointer we need an instruction like A=M. The A register set to some memory register</li></ul></details></li></ul></details></li></ul><ul id="5780c609-82d1-4b67-ba37-8eb6e05afd83" class="block-color-gray_background toggle"><li><details open=""><summary>iteration (+1)</summary></details></li></ul><ul id="65c9735e-e5f8-46a5-9be6-183484034b59" class="block-color-gray_background toggle"><li><details open=""><summary>use indentations</summary></details></li></ul><ul id="1276993a-0826-4717-a55e-463b99061d47" class="bulleted-list"><li>R0-15, just another way of representing registers 0-15, just remove the R</li></ul><ul id="199f185c-4b3c-42cd-a5e9-9deee86d699e" class="bulleted-list"><li>SCREEN → 16384  BASE ADRESS of allocated screen memory →</li></ul><ul id="e5fba7cd-3f9a-4e58-a001-9ff5bfe63f6d" class="bulleted-list"><li>KBD → 24576</li></ul><ul id="d80e3798-ab84-4d1d-9c6c-0e30b2cec3bf" class="bulleted-list"><li>machine language provide different limits etc. different machine languages may provide division, or data types, bit size -(they are agreed upon my the CPU manufacturers and engineers)</li></ul><ul id="34a54d37-c34f-423c-8026-5ce81a8c91e5" class="bulleted-list"><li>symbols are just extra ways of saying important thing like important memory location  in assembly like index→ memory[24] or jump loop, where loop is  memory location 102</li></ul></details></li></ul><ul id="e6d13b75-94aa-4617-9cc1-c8daa9494dfa" class="bulleted-list"><li>end all programs with an infinite loop</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="3c4a0b20-a580-42c7-9f37-4d923a7e5076" class="toggle"><li><details open=""><summary>jack program language → </summary></details></li></ul><ul id="395b1a20-1ae8-4b83-ac5e-6046fcc4c3c9" class="toggle"><li><details open=""><summary>vm code in C → they read project 7 , stack arithmetic vm files</summary><ul id="78d51ed7-d45c-4bd6-8744-342bce4057c8" class="bulleted-list"><li>return a string for assembly code for doing something<ul id="51d0aa58-225c-4dbd-b53c-b3574c11e89c" class="bulleted-list"><li>i.e push function to return aseembly lines</li></ul></li></ul></details></li></ul><ul id="556ff468-7361-4102-b6dd-ee720cb60257" class="toggle"><li><details open=""><summary> → assembly code→ c instruction translator → machine code to control the hardware we made</summary></details></li></ul><p id="1f03792a-5b92-431b-b855-b02b20be3fda" class="">
+</p></div></article></body></html>
